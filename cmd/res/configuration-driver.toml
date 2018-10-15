@@ -1,0 +1,21 @@
+[Incoming]
+Protocol = "tcp"
+Host = "m12.cloudmqtt.com"
+Port = 17217
+Username = "tobeprovided"
+Password = "tobeprovided"
+Qos = 0
+KeepAlive = 3600
+MqttClientId = "IncomingDataSubscriber"
+Topic = "DataTopic"
+
+[Response]
+Protocol = "tcp"
+Host = "m12.cloudmqtt.com"
+Port = 17217
+Username = "tobeprovided"
+Password = "tobeprovided"
+Qos = 0
+KeepAlive = 3600
+MqttClientId = "CommandResponseSubscriber"
+Topic = "ResponseTopic"
