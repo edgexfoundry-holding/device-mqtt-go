@@ -6,9 +6,11 @@
 package driver
 
 import (
+	"flag"
 	"fmt"
-	"github.com/BurntSushi/toml"
 	"io/ioutil"
+
+	"github.com/BurntSushi/toml"
 )
 
 type configuration struct {
@@ -30,7 +32,17 @@ type SubscribeInfo struct {
 // LoadConfigFromFile use to load toml configuration
 func LoadConfigFromFile() (*configuration, error) {
 	config := new(configuration)
-	filePath := "./res/configuration-driver.toml"
+
+	confDir := flag.Lookup("confdir").Value.(flag.Getter).Get().(string)
+	if len(confDir) == 0 {
+		confDir = flag.Lookup("c").Value.(flag.Getter).Get().(string)
+	}
+
+	if len(confDir) == 0 {
+		confDir = "./res"
+	}
+
+	filePath := fmt.Sprintf("%v/configuration-driver.toml", confDir)
 
 	file, err := ioutil.ReadFile(filePath)
 	if err != nil {
