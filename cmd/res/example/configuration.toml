@@ -61,11 +61,11 @@ Level = "DEBUG"
   [DeviceList.Addressable]
     name = "Gateway address"
     Protocol = "TCP"
-    Address = "m12.cloudmqtt.com"
-    Port = 17217
+    Address = "0.0.0.0"
+    Port = 1883
     Publisher = "CommandPublisher"
-    user = "tobeprovided"
-    password = "tobeprovided"
+    user = "admin"
+    password = "public"
     topic = "CommandTopic"
 
 # Pre-define Schedule Configuration
