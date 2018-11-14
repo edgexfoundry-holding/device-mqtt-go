@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/url"
+	"strings"
 
 	"github.com/eclipse/paho.mqtt.golang"
 	sdk "github.com/edgexfoundry/device-sdk-go"
@@ -27,7 +28,7 @@ func startIncomingListening() error {
 	var topic = driver.Config.Incoming.Topic
 
 	uri := &url.URL{
-		Scheme: scheme,
+		Scheme: strings.ToLower(scheme),
 		Host:   fmt.Sprintf("%s:%d", brokerUrl, brokerPort),
 		User:   url.UserPassword(username, password),
 	}

@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/url"
+	"strings"
 	"sync"
 	"time"
 
@@ -97,7 +98,7 @@ func (d *Driver) HandleReadCommands(addr *models.Addressable, reqs []sdkModel.Co
 	var mqttClientId = addr.Publisher
 
 	uri := &url.URL{
-		Scheme: addr.Protocol,
+		Scheme: strings.ToLower(addr.Protocol),
 		Host:   fmt.Sprintf("%s:%d", brokerUrl, brokerPort),
 		User:   url.UserPassword(username, password),
 	}
@@ -183,7 +184,7 @@ func (d *Driver) HandleWriteCommands(addr *models.Addressable, reqs []sdkModel.C
 	var mqttClientId = addr.Publisher
 
 	uri := &url.URL{
-		Scheme: addr.Protocol,
+		Scheme: strings.ToLower(addr.Protocol),
 		Host:   fmt.Sprintf("%s:%d", brokerUrl, brokerPort),
 		User:   url.UserPassword(username, password),
 	}

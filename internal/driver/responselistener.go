@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/url"
+	"strings"
 
 	"github.com/eclipse/paho.mqtt.golang"
 )
@@ -25,7 +26,7 @@ func startCommandResponseListening() error {
 	var topic = driver.Config.Response.Topic
 
 	uri := &url.URL{
-		Scheme: scheme,
+		Scheme: strings.ToLower(scheme),
 		Host:   fmt.Sprintf("%s:%d", brokerUrl, brokerPort),
 		User:   url.UserPassword(username, password),
 	}

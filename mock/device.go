@@ -10,6 +10,13 @@ import (
 	"time"
 )
 
+const (
+	brokerUrl  = "m12.cloudmqtt.com"
+	brokerPort = 17217
+	username   = "tobeprovided"
+	password   = "tobeprovided"
+)
+
 func main() {
 	go runCommandHandler()
 	go runDataSender()
@@ -28,10 +35,6 @@ func main() {
 //
 // Requires the Device Service, Command, Core Data, Metadata and Mongo to all be running
 func runCommandHandler() {
-	var brokerUrl = "m12.cloudmqtt.com"
-	var brokerPort = 17217
-	var username = "tobeprovided"
-	var password = "tobeprovided"
 	var mqttClientId = "CommandSubscriber"
 	var qos = 0
 	var topic = "CommandTopic"
@@ -59,10 +62,6 @@ func runCommandHandler() {
 // runDataSender use to to generate random numbers and send them into the device service as if a sensor
 // was sending the data. Requires the Device Service along with Mongo, Core Data, and Metadata to be running
 func runDataSender() {
-	var brokerUrl = "0.0.0.0"
-	var brokerPort = 1883
-	var username = "tobeprovided"
-	var password = "tobeprovided"
 	var mqttClientId = "IncomingDataPublisher"
 	var qos = byte(0)
 	var topic = "DataTopic"
@@ -128,10 +127,6 @@ func onCommandReceivedFromBroker(client mqtt.Client, message mqtt.Message) {
 }
 
 func sendTestData(response map[string]interface{}) {
-	var brokerUrl = "m12.cloudmqtt.com"
-	var brokerPort = 17217
-	var username = "tobeprovided"
-	var password = "tobeprovided"
 	var mqttClientId = "ResponsePublisher"
 	var qos = byte(0)
 	var topic = "ResponseTopic"

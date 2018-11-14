@@ -3,7 +3,7 @@ Host = "localhost"
 Port = 49982
 ConnectRetries = 3
 Labels = []
-OpenMsg = "device simple started"
+OpenMsg = "device mqtt started"
 ReadMaxLimit = 256
 Timeout = 5000
 EnableAsyncReadings = true
@@ -61,29 +61,14 @@ Level = "DEBUG"
   [DeviceList.Addressable]
     name = "Gateway address"
     Protocol = "TCP"
-    Address = "m12.cloudmqtt.com"
-    Port = 17217
+    Address = "0.0.0.0"
+    Port = 1883
     Publisher = "CommandPublisher"
-    user = "tobeprovided"
-    password = "tobeprovided"
+    user = "admin"
+    password = "public"
     topic = "CommandTopic"
 
 # Pre-define Schedule Configuration
-[[Schedules]]
-Name = "mqtt-10sec-schedule"
-Frequency = "PT10S"
-
-[[ScheduleEvents]]
-Name = "ping"
-Schedule = "mqtt-10sec-schedule"
-Service="edgex-support-scheduler"
-  [ScheduleEvents.Addressable]
-  Protocol = "HTTP"
-  HTTPMethod = "GET"
-  Address = "edgex-device-mqtt"
-  Port = 49991
-  Path = "/api/v1/device/name/MQTT test device/testping"
-
 [[Schedules]]
 Name = "mqtt-30sec-schedule"
 Frequency = "PT30S"
