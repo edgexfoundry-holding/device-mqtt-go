@@ -6,12 +6,13 @@
 package main
 
 import (
+	"github.com/edgexfoundry/device-mqtt-go"
 	"github.com/edgexfoundry/device-mqtt-go/internal/driver"
 	"github.com/edgexfoundry/device-sdk-go/pkg/startup"
 )
 
 const (
-	version     string = "1.0"
+	version     string = device_mqtt.Version
 	serviceName string = "edgex-device-mqtt"
 )
 
