@@ -1,17 +1,20 @@
 .PHONY: build test clean prepare update
 
 GO=CGO_ENABLED=0 go
-GOFLAGS=-ldflags
 
 MICROSERVICES=cmd/device-mqtt
 
 .PHONY: $(MICROSERVICES)
 
+VERSION=$(shell cat ./VERSION)
+
+GOFLAGS=-ldflags "-X github.com/edgexfoundry/device-mqtt-go.Version=$(VERSION)"
+
 build: $(MICROSERVICES)
 	go build ./...
 
 cmd/device-mqtt:
-	$(GO) build -o $@ ./cmd
+	$(GO) build $(GOFLAGS) -o $@ ./cmd
 
 test:
 	go test ./... -cover
